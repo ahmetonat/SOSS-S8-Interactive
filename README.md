@@ -1,6 +1,6 @@
 # SOSS-S8-Interactive
 
-I had posted [**SOSS-S8: Simple-Open-Source-Servo-S8**](https://aviatorahmet.blogspot.com/2018/12/soss-s8-simple-open-source-servo-stm8s.html); a feedback position controller for DC motors using an incremental encoder for feedback. Its main purpose was education; to provide a platform where anyone can try out digital servo position control very cheaply. It only 
+I had posted [**SOSS-S8: Simple-Open-Source-Servo-S8**](https://aviatorahmet.blogspot.com/2018/12/soss-s8-simple-open-source-servo-stm8s.html); a feedback position controller for DC motors using an incremental encoder for feedback. Its main purpose was education; to provide a platform where anyone can try out digital servo position control very cheaply.
 
 Now, I introduce **SOSS-S8 Interactive**: You can send commands over the serial port, to set: Reference position, reference mode (select between square wave, constant, or analog), and change the PID parameters. It is now much more versatile, and easy to control from another master processor, such as an Arduino, for different purposes like a feedback controlled 3D printer. It retains the SOSS-S8 function that you can plot the reference and actual position, in real-time too! 
 
