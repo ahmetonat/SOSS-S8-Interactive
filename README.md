@@ -13,26 +13,27 @@ The command set can easily be changed to suit your needs. Currently there are tw
 
 **r=4867.**
 
-They start with a command letter, followed by the equals sign '=', a number in the range (-20000,20000) and completes with a period '.'. No line feed or carriage return are necessary. The following command letters are available:
-  - **r=xxx.**  Set position reference in encoder ticks. The motor immediately goes to this reference.
-  - **t=xxx.**  Set square wave reference period in ms. This command seths how often the reference value changes. 
-  - **m=x.**    Set command mode. 
-    - **m=0.**  Hold constant position. The value is set separately using the **r=xxx.** command. Mode 0 allows you to generate arbitrary position trajectories by the motor under serial port supervision. You can connect several SOSS-S8's to a master processor to build a robot, for example. 
-    - **m=1.**  Square wave reference. The reference value changes between '0' position and the value set by the **r=xxx.** command. The pperiod is set by the **t=xxx.** command.
-    - **m=2.**  Reference is set by the voltage applied to ADC1, CH2 analog input pin. It will work like a RC servo in this mode. If you connect a potentiometer (as a volatage divider from 3.3V and GND), the motor shaft will track potentiometer position.
+They start with a command letter, followed by the equals sign '=', a number in the range (-20000, 20000) and complete with a period '.'. No line feed or carriage return are necessary. The following command letters are available:
+   - **r=xxx.**  Set position reference in encoder ticks. The motor immediately goes to this reference.
+   - **t=xxx.**  Set square wave reference period in ms. This command sets how often the reference value changes. 
+   - **m=x.**    Set command mode. 
+     - **m=0.**  Hold constant position. The value is set separately using the **r=xxx.** command. Mode 0 allows you to generate arbitrary position trajectories by the motor under serial port supervision. You can connect several SOSS-S8's to a master processor to build a robot, for example. 
+     - **m=1.**  Internally generated square wave reference. The reference value changes between '0' and the value set by the **r=xxx.** command. The period is set by the **t=xxx.** command.
+     - **m=2.**  Reference is set by the voltage applied to ADC1, CH2 analog input pin. It will work like a RC servo in this mode. If you connect a potentiometer (as a volatage divider from 3.3V and GND), the motor will track potentiometer shaft position.
     
  - Parameter set commands have the following structure:
  
  **d=12500,4.**
  
- They start with a command letter and have two arguments separated by a comma; the first argument is a number in the range (-20000,20000) as before and the second argument is a single digit. The arguments form a block floating point number that, for the above example look like this: 12500 x 2^(-4), so it will be computed as 12500 x 0.03125=390.625 The following parameter set commands are available:
+ They start with a command letter and have two arguments separated by a comma; the first argument is a number in the range (-20000, 20000) as before and the second argument is a single digit. The arguments form a block floating point number that, for the above example look like this: 12500 x 2^(-4), so it will be computed as 12500 x 0.03125=390.625 The following parameter set commands are available:
+
     - **p=xxx,e.**  Set proportional gain of PID. (However, currently e is ignored for this command due to laziness... Will fix!)
     - **i=xxx,e.**  Set integral gain of PID.
     - **d=xxx,e.**  Set derivative gain of PID.
     
 The parser is quite flexible, and parses the characters as soon as they arrive (does not accumulate them in a buffer). It will also terminate to the initial state as soon as an unexpected character is received (error). So if one command was in error, the next command should go through smoothly. The parser works with commands sent in rapid succession as well. So you can send them without worrying about putting some separation time between them.
     
-It is possible to assign the commands from any serial port. Using the PC, you can use a terminal emulator, the "SerialPlot" program that is detailed in the SOSS-S8 main page, or even Arduino terminal screen. The communication speed is the same as SOSS-S8: 115200, 8N1.
+It is possible to assign the commands from any serial port. Using the PC, you can use a terminal emulator, the "SerialPlot" program that is detailed in the SOSS-S8 main page, or even Arduino IDE's "Serial Monitor". The communication speed is the same as SOSS-S8: 115200, 8N1.
 
 You can also send commands from a master microprocessor. This brings out the main power of SOSS-S8 Interactive: You can now build a robot, 3D printer etc. that can follow a pre-set trajectory.
 
