@@ -16,10 +16,10 @@ The command set can easily be changed to suit your needs. Currently there are tw
 They start with a command letter, followed by the equals sign '=', a number in the range (-20000, 20000) and complete with a period '.'. No line feed or carriage return are necessary. The following command letters are available:
    - **r=xxx.**  Set position reference in encoder ticks. The motor immediately goes to this reference.
    - **t=xxx.**  Set square wave reference period in ms. This command sets how often the reference value changes. 
-   - **m=x.**    Set command mode. 
-     - **m=0.**  Hold constant position. The value is set separately using the **r=xxx.** command. Mode 0 allows you to generate arbitrary position trajectories by the motor under serial port supervision. You can connect several SOSS-S8's to a master processor to build a robot, for example. 
-     - **m=1.**  Internally generated square wave reference. The reference value changes between '0' and the value set by the **r=xxx.** command. The period is set by the **t=xxx.** command.
-     - **m=2.**  Reference is set by the voltage applied to ADC1, CH2 analog input pin. It will work like a RC servo in this mode. If you connect a potentiometer (as a volatage divider from 3.3V and GND), the motor will track potentiometer shaft position.
+   - **m=x.**    Set position reference source mode. 
+     - **m=0.**  Hold constant position. The position reference value is set separately using the **r=xxx.** command. Mode 0 allows you to generate arbitrary position trajectories by the motor under serial port supervision. You can connect several SOSS-S8's to a master processor to build a robot, for example.
+     - **m=1.**  Internally generated square wave position reference. The reference value changes between '0' and the value set by the **r=xxx.** command. The period is set by the **t=xxx.** command.
+     - **m=2.**  Position reference is set by the voltage applied to ADC1, CH2 analog input pin. It will work like a RC servo in this mode. If you connect a potentiometer (as a volatage divider from 3.3V and GND), the motor will track potentiometer shaft position.
     
  - Parameter set commands have the following structure:
  
@@ -35,6 +35,8 @@ The parser is quite flexible, and parses the characters as soon as they arrive (
 It is possible to assign the commands from any serial port. Using the PC, you can use a terminal emulator, the "SerialPlot" program that is detailed in the SOSS-S8 main page, or even Arduino IDE's "Serial Monitor". The communication speed is the same as SOSS-S8: 115200, 8N1.
 
 You can also send commands from a master microprocessor. This brings out the main power of SOSS-S8 Interactive: You can now build a robot, 3D printer etc. that can follow a pre-set trajectory.
+
+Remember, to build SOSS-S8 Interactive, you only need open source tools. [The tool installation and examples are explained in my blog](https://aviatorahmet.blogspot.com/2018/01/programming-stm8s-using-sdcc-and-gnu.html). If you do not feel like installing anything, you can simply program the pre-compiled binary file in this repo: `motor.ihx`.
 
 So, go ahead and upgrade to SOSS-S8 Interactive! It is great fun, and backward compatible with SOSS-S8.
 
