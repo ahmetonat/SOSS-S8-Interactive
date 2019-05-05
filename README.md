@@ -2,7 +2,7 @@
 
 I had posted [**SOSS-S8: Simple-Open-Source-Servo-S8**](https://aviatorahmet.blogspot.com/2018/12/soss-s8-simple-open-source-servo-stm8s.html); a feedback position controller for DC motors using an incremental encoder for feedback. Its main purpose was education; to provide a platform where anyone can try out digital servo position control very cheaply. It only 
 
-Now, I introduce **SOSS-S8 Interactive**: You can send commands over the serial port, to set: Reference position, reference mode (select between square wave, constant, or analog), and change the PID parameters. It is now much more versatile, and easy to control from an Arduino, for example.
+Now, I introduce **SOSS-S8 Interactive**: You can send commands over the serial port, to set: Reference position, reference mode (select between square wave, constant, or analog), and change the PID parameters. It is now much more versatile, and easy to control from another master processor, such as an Arduino, for different purposes like a feedback controlled 3D printer. It retains the SOSS-S8 function that you can plot the reference and actual position, in real-time too! 
 
 ![It looks like this...](https://github.com/ahmetonat/Simple-Open-Source-Servo-S8-SOSS-S8/blob/master/IMG_0923.JPG)
 
@@ -17,7 +17,7 @@ It starts with a command letter, the equals sign '=', a number in the range (-20
   - **m=x.**    Set command mode. 
     - m=0.: Hold constant position. The value is set separately using the **r=xxx.** command. Mode 0 allows you to generate arbitrary position trajectories by the motor under serial port supervision. You can connect several SOSS-S8's to a master processor to build a robot, for example. 
     - m=1.: Square wave reference. The reference value changes between '0' position and the value set by the **r=xxx.** command. The pperiod is set by the **t=xxx.** command.
-    - m=2.: Reference is set by the voltage applied to A0, the analog input pin. It will work like a RC servo in this mode.
+    - m=2.: Reference is set by the voltage applied to ADC1, CH2 analog input pin. It will work like a RC servo in this mode. If you connect a potentiometer (as a volatage divider from 3.3V and GND), the motor shaft will track potentiometer position.
     
  - Parameter set commands have the following structure:
  **d=12500,4.**
@@ -26,11 +26,11 @@ It starts with a command letter, the equals sign '=', a number in the range (-20
     - **i=xxx,e.**  Set integral gain of PID.
     - **d=xxx,e.**  Set derivative gain of PID.
     
-    The parser is quite flexible, and parses the characters as soon as they arrive (does not accumulate them in a buffer). It will also terminate to the initial state as soon as an unexpected character is received (error). So if one command was in error, the next command should go through smoothly. The parser works with commands sent in rapid succession as well. So you can send them without worrying about putting some separation time between them.
+The parser is quite flexible, and parses the characters as soon as they arrive (does not accumulate them in a buffer). It will also terminate to the initial state as soon as an unexpected character is received (error). So if one command was in error, the next command should go through smoothly. The parser works with commands sent in rapid succession as well. So you can send them without worrying about putting some separation time between them.
     
-It is possible to assign the commands from any serial port. Using the PC, you can use a terminal emulator, the "SerialPlot" program that is detailed in the SOSS-S8 main page, or even Arduino terminal screen. 
+It is possible to assign the commands from any serial port. Using the PC, you can use a terminal emulator, the "SerialPlot" program that is detailed in the SOSS-S8 main page, or even Arduino terminal screen. The communication speed is the same as SOSS-S8: 115200, 8N1.
 
-You can also send commands from a master microprocessor. This brings out the main power of SOSS-S8 Interactive. You can then build a robot, 3D printer etc. that can follow a pre-set trajectory.
+You can also send commands from a master microprocessor. This brings out the main power of SOSS-S8 Interactive: You can now build a robot, 3D printer etc. that can follow a pre-set trajectory.
 
 So, go ahead and upgrade to SOSS-S8 Interactive! It is great fun, and backward compatible with SOSS-S8.
 
