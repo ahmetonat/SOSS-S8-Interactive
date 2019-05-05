@@ -10,8 +10,10 @@ Now, I introduce **SOSS-S8 Interactive**: You can send commands over the serial 
 The command set can easily be changed to suit your needs. Currently there are two types of commands.
 
 - Integer commands have the following structure:
+
 **r=4867.**
-It starts with a command letter, the equals sign '=', a number in the range (-20000,20000) and completes with a period '.'. No line feed or carriage return are necessary. The following command letters are available:
+
+They start with a command letter, followed by the equals sign '=', a number in the range (-20000,20000) and completes with a period '.'. No line feed or carriage return are necessary. The following command letters are available:
   - **r=xxx.**  Set position reference in encoder ticks. The motor immediately goes to this reference.
   - **t=xxx.**  Set square wave reference period in ms. This command seths how often the reference value changes. 
   - **m=x.**    Set command mode. 
@@ -20,7 +22,9 @@ It starts with a command letter, the equals sign '=', a number in the range (-20
     - **m=2.**  Reference is set by the voltage applied to ADC1, CH2 analog input pin. It will work like a RC servo in this mode. If you connect a potentiometer (as a volatage divider from 3.3V and GND), the motor shaft will track potentiometer position.
     
  - Parameter set commands have the following structure:
+ 
  **d=12500,4.**
+ 
  They start with a command letter and have two arguments separated by a comma; the first argument is a number in the range (-20000,20000) as before and the second argument is a single digit. The arguments form a block floating point number that, for the above example look like this: 12500 x 2^(-4), so it will be computed as 12500 x 0.03125=390.625 The following parameter set commands are available:
     - **p=xxx,e.**  Set proportional gain of PID. (However, currently e is ignored for this command due to laziness... Will fix!)
     - **i=xxx,e.**  Set integral gain of PID.
