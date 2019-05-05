@@ -25,7 +25,7 @@ They start with a command letter, followed by the equals sign '=', a number in t
  
  **d=12500,4.**
  
- They start with a command letter and have two arguments separated by a comma; the first argument is a number in the range (-20000, 20000) as before and the second argument is a single digit. The arguments form a block floating point number that, for the above example look like this: 12500 x 2^(-4), so it will be computed as 12500 x 0.03125=390.625. The following parameter set commands are available:
+ They start with a command letter and have two arguments separated by a comma; the first argument is a number in the range (-20000, 20000) as before and the second argument is a single digit exponent for base 2. The arguments form a block floating point number that, for the above example look like this: 12500 x 2^(-4), so it will be computed as 12500 x 0.03125=390.625. The following parameter set commands are available:
    - **p=xxx,e.**  Set proportional gain of PID. (However, currently e is ignored for this command due to laziness... Will fix!)
    - **i=xxx,e.**  Set integral gain of PID.
    - **d=xxx,e.**  Set derivative gain of PID.
