@@ -15,9 +15,9 @@ It starts with a command letter, the equals sign '=', a number in the range (-20
   - **r=xxx.**  Set position reference in encoder ticks. The motor immediately goes to this reference.
   - **t=xxx.**  Set square wave reference period in ms. This command seths how often the reference value changes. 
   - **m=x.**    Set command mode. 
-    - m=0.: Hold constant position. The value is set separately using the **r=xxx.** command. Mode 0 allows you to generate arbitrary position trajectories by the motor under serial port supervision. You can connect several SOSS-S8's to a master processor to build a robot, for example. 
-    - m=1.: Square wave reference. The reference value changes between '0' position and the value set by the **r=xxx.** command. The pperiod is set by the **t=xxx.** command.
-    - m=2.: Reference is set by the voltage applied to ADC1, CH2 analog input pin. It will work like a RC servo in this mode. If you connect a potentiometer (as a volatage divider from 3.3V and GND), the motor shaft will track potentiometer position.
+    - **m=0.**  Hold constant position. The value is set separately using the **r=xxx.** command. Mode 0 allows you to generate arbitrary position trajectories by the motor under serial port supervision. You can connect several SOSS-S8's to a master processor to build a robot, for example. 
+    - **m=1.**  Square wave reference. The reference value changes between '0' position and the value set by the **r=xxx.** command. The pperiod is set by the **t=xxx.** command.
+    - **m=2.**  Reference is set by the voltage applied to ADC1, CH2 analog input pin. It will work like a RC servo in this mode. If you connect a potentiometer (as a volatage divider from 3.3V and GND), the motor shaft will track potentiometer position.
     
  - Parameter set commands have the following structure:
  **d=12500,4.**
